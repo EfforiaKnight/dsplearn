@@ -1,4 +1,4 @@
-# dsplearn
+# DSP learn
 
 Sources:
 * [CourseEra](https://www.coursera.org/learn/dsp/home/welcome)

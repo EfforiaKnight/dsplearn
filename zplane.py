@@ -22,8 +22,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import patches
-from matplotlib.figure import Figure
-from matplotlib import rcParams
     
 def zplane(b, a, circlecolor='black', figsize=(8,8), filename=None):
     """
@@ -53,7 +51,7 @@ def zplane(b, a, circlecolor='black', figsize=(8,8), filename=None):
     """
 
     # get a figure/plot
-    plt.figure(figsize=figsize)
+    plt.rcParams["figure.figsize"] = figsize
     ax = plt.subplot(111)
 
     # create the unit circle

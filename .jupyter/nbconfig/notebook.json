@@ -1,0 +1,30 @@
+{
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": false
+    }
+  },
+  "load_extensions": {
+    "jupyter-js-widgets/extension": true,
+    "nbextensions_configurator/config_menu/main": true,
+    "contrib_nbextensions_help_item/main": true,
+    "highlight_selected_word/main": true,
+    "codefolding/main": true,
+    "select_keymap/main": true,
+    "spellchecker/main": true
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": true
+  },
+  "code_prettify": {
+    "register_hotkey": true
+  },
+  "highlight_selected_word": {
+    "highlight_color": "#aeaeae",
+    "highlight_color_blurred": "#dddddd",
+    "code_cells_only": true,
+    "outlines_only": true,
+    "outline_width": "0.5"
+  }
+}

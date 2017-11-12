@@ -23,7 +23,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import patches
     
-def zplane(b, a, circlecolor='black', figsize=(8,8), filename=None):
+def zplane(b, a, axis_lim=1, axes= None, circlecolor='black', figsize=(8,8), filename=None):
     """
     Plot the complex z-plane given a transfer function.
         
@@ -50,10 +50,14 @@ def zplane(b, a, circlecolor='black', figsize=(8,8), filename=None):
         System gain.
     """
 
-    # get a figure/plot
+    # get a figure/plot    
+    if axes != None:
+        ax = axes
+    else:
+        ax = plt.subplot(111)
+        
     plt.rcParams["figure.figsize"] = figsize
-    ax = plt.subplot(111)
-
+    
     # create the unit circle
     uc = patches.Circle((0,0), radius=1, fill=False,
                         color=circlecolor, ls='dashed')
@@ -93,9 +97,9 @@ def zplane(b, a, circlecolor='black', figsize=(8,8), filename=None):
     ax.spines['top'].set_visible(False)
 
     # set the ticks
-    r = 1.5; plt.axis('scaled'); plt.axis([-r, r, -r, r])
-    ticks = [-1, -.5, .5, 1]; plt.xticks(ticks); plt.yticks(ticks)
-
+    r = axis_lim; r_axis = r + 0.5; plt.axis('scaled'); plt.axis([-r_axis, r_axis, -r_axis, r_axis])
+    ticks = np.arange(-r, r + 0.5, 0.5); plt.xticks(ticks); plt.yticks(ticks)
+    
     if filename is None:
         plt.show()
     else:

@@ -22,6 +22,55 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import patches
+import scipy.signal as sig
+
+def filter_graph(b, a, SFnorm, zpln=False):
+    '''
+    Sketch filter Magnitude. Phase response and z plane
+    
+    Parameters
+    ----------
+    Numerator : (ndarray)
+        Numerator polynomial.
+    Denominator : (ndarray)
+        Denominator polynomial.
+    SFnorm : (int)
+        Normalized  frequencies, Nyquist frequency. Units of half-cycles/sample.
+        https://en.wikipedia.org/wiki/Normalized_frequency_(unit)
+    zpln : (boolian)
+        Sketch z plane and return zeros, poles and system gain. 
+        
+    Returns if zpln is True
+    ----------
+    z : (ndarray)
+        Zeros of the transfer function.
+    p : (ndarray)
+        Poles of the transfer function.
+    k : (float)
+        System gain.
+    '''
+    wr, Hr = sig.freqz(b, a, 1024)
+    
+    fig = plt.figure(figsize=(16,14))
+    fig.tight_layout()
+    ax1 = fig.add_subplot(221)
+    ax1.set_title("Magnitude Response")
+    ax1.set_xlabel("Hz")
+    ax1.set_ylabel("Amp [dB]")
+    ax1.plot(wr/np.pi * (SFnorm), 20*np.log10(np.abs(Hr)))
+
+    ax2 = fig.add_subplot(222)
+    ax2.set_title("Phase Response")
+    ax2.set_xlabel("Hz")
+    ax2.set_ylabel("Angle [radian]")
+    ax2.plot(wr/np.pi * (SFnorm), np.unwrap(np.angle(Hr)))
+    
+    if zpln:
+        ax3 = fig.add_subplot(212)
+        (z, p, k) = zplane(b, a, axes = ax3, axis_lim = 2, circlecolor='white')
+        print(f'Zeros: {z} \nPoles: {p}')
+        return z, p
+
     
 def zplane(b, a, axis_lim=1, axes= None, circlecolor='black', figsize=(8,8), filename=None):
     """

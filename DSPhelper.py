@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 Christopher Felton
+# Copyright (c) 2017 Constantine Gusev
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
@@ -25,8 +25,7 @@ from matplotlib import patches
 import scipy.signal as sig
 
 def filter_graph(b, a, SFnorm, zpln=False):
-    '''
-    Sketch filter Magnitude. Phase response and z plane
+    ''' Sketch filter Magnitude. Phase response and z plane
     
     Parameters
     ----------
@@ -73,8 +72,7 @@ def filter_graph(b, a, SFnorm, zpln=False):
 
     
 def zplane(b, a, axis_lim=1, axes= None, circlecolor='black', figsize=(8,8), filename=None):
-    """
-    Plot the complex z-plane given a transfer function.
+    """ Plot the complex z-plane given a transfer function.
         
     Parameters
     ----------
